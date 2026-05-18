@@ -112,7 +112,17 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
             if (isSuccess) {
                 //添加到Redis
                 stringRedisTemplate.opsForZSet().add(key,userId.toString(),System.currentTimeMillis());
+
+
+
+
+                //sllsf
             }
+
+
+
+
+
         } else {
             //已点赞
             //数据库中Blog点赞数减一
@@ -144,6 +154,10 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
                 .map(user -> BeanUtil.copyProperties(user, UserDTO.class))
                 .collect(Collectors.toList());
         //返回
+
+
+
+
         return Result.ok(userDTOS);
     }
 
@@ -170,6 +184,9 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
         // 返回id
         return Result.ok(blog.getId());
     }
+
+
+
 
     @Override
     public Result queryBlogOfFollow(Long max, Integer offset) {
@@ -215,5 +232,10 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
         scrollResult.setOffset(os);
         scrollResult.setMinTime(minTime);
         return Result.ok(scrollResult);
+
+
+
+
+
     }
 }
